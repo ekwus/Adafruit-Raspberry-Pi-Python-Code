@@ -55,7 +55,7 @@ class TMP006 :
   
 
   # Start Sampling
-  def begin(self, samplerate=self.__TMP006_CFG_16SAMPLE):
+  def begin(self, samplerate=__TMP006_CFG_16SAMPLE):
     self.i2c.write16(self.__TMP006_REG_CONFIG,
                      self.__TMP006_CFG_MODEON | self.__TMP006_CFG_DRDYEN | samplerate);
 
