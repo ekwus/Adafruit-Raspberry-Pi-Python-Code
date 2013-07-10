@@ -66,9 +66,9 @@ class TMP006 :
       print "mid = 0x%x" % mid
       print "did = 0x%x" % did
 
-    if mid != __TMP006_MANID:
+    if mid != self.__TMP006_MANID:
       print "WARN TMP006: Manufacturer ID Mismatch (%04X)" % mid
-    if did != __TMP006_DEVID:
+    if did != self.__TMP006_DEVID:
       print "WARN TMP006: Decide ID Mismatch (%04X)" % did
 
   def readRawDieTemperature(self):
