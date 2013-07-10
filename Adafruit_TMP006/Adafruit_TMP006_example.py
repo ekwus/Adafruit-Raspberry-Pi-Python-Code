@@ -17,8 +17,8 @@ tmp.begin()
 # Wait a short bit for sample averaging
 sleep(1.5)
 
-dietemp = bmp.readDieTempC()
-objtemp = bmp.readObjTempC()
+dietemp = tmp.readDieTempC()
+objtemp = tmp.readObjTempC()
 
 print "Die Temperature:    %.2f C" % dietemp
 print "Object Temperature: %.2f C" % objtemp
