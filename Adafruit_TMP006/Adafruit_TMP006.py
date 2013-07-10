@@ -65,8 +65,8 @@ class TMP006 :
 
     self.started = true
 
-    mid = self.i2c.readS16(self.__TMP006_REG_MANID)
-    did = self.i2c.readS16(self.__TMP006_REG_DEVID)
+    mid = self.i2c.readU16(self.__TMP006_REG_MANID)
+    did = self.i2c.readU16(self.__TMP006_REG_DEVID)
 
     if self.debug:
       print "mid = 0x%x" % mid
