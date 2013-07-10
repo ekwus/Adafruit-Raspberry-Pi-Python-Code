@@ -55,14 +55,14 @@ class TMP006 :
   
 
   # Start Sampling
-  def begin(samplerate=self.__TMP006_CFG_16SAMPLE):
-    self.i2c.readU16(__TMP006_REG_CONFIG,
-                     __TMP006_CFG_MODEON | __TMP006_CFG_DRDYEN | samplerate);
+  def begin(self, samplerate=self.__TMP006_CFG_16SAMPLE):
+    self.i2c.write16(self.__TMP006_REG_CONFIG,
+                     self.__TMP006_CFG_MODEON | self.__TMP006_CFG_DRDYEN | samplerate);
 
     mid = self.i2c.readU16(self.__TMP006_REG_MANID)
     did = self.i2c.readU16(self.__TMP006_REG_DEVID)
 
-    if debug:
+    if self.debug:
       print "mid = 0x%x" % mid
       print "did = 0x%x" % did
 
@@ -71,7 +71,7 @@ class TMP006 :
     if did != __TMP006_DEVID:
       print "WARN TMP006: Decide ID Mismatch (%04X)" % did
 
-  def readRawDieTemperature():
+  def readRawDieTemperature(self):
     "Read the raw die temperature"
     raw = self.i2c.readU16(self.__TMP006_REG_TAMB)
     raw >>= 2
@@ -80,7 +80,7 @@ class TMP006 :
       print "Raw Tambient: 0x%04X (%f C)" % (raw, C)
     return raw
 
-  def readRawVoltage():
+  def readRawVoltage(self):
     "Read the raw voltage"
     raw = self.i2c.readU16(self.__TMP006_REG_VOBJ)
     if self.debug:
@@ -90,14 +90,14 @@ class TMP006 :
       print "Raw voltage: 0x%04X (%f uV)" % (raw, v)
     return raw
 
-  def readDieTempC():
+  def readDieTempC(self):
    Tdie = self.readRawDieTemperature()
    Tdie *= 0.03125 # convert to celsius
    if self.debug:
      print "Tdie = ", Tdie
    return Tdie
 
-  def readObjTempC():
+  def readObjTempC(self):
     Tdie = self.readRawDieTemperature()
     Vobj = self.readRawVoltage()
     Vobj *= 156.25  # 156.25 nV per LSB
