@@ -51,7 +51,7 @@ class TMP006 :
 
     self.address = address
     self.debug = debug
-    self.started = false
+    self.started = False
 
   # Destructor
   def __del__(self):
@@ -63,7 +63,7 @@ class TMP006 :
     self.i2c.write16(self.__TMP006_REG_CONFIG,
                      self.__TMP006_CFG_MODEON | self.__TMP006_CFG_DRDYEN | samplerate);
 
-    self.started = true
+    self.started = True
 
     mid = self.i2c.readU16(self.__TMP006_REG_MANID)
     did = self.i2c.readU16(self.__TMP006_REG_DEVID)
