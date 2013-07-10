@@ -18,12 +18,13 @@ tmp = TMP006(0x40)
 tmp.begin()
 
 # Wait a short bit for sample averaging
-print "Pausing 1.5 s..."
-sleep(1.5)
+while True:
+  print "Pausing 1.0 s..."
+  sleep(1.0)
 
-dietemp = tmp.readDieTempC()
-objtemp = tmp.readObjTempC()
+  dietemp = tmp.readDieTempC()
+  objtemp = tmp.readObjTempC()
 
-print "Die Temperature:    %.2f C / %.2f F" % (dietemp, C_to_F(dietemp))
-print "Object Temperature: %.2f C / %.2f F" % (objtemp, C_to_F(objtemp))
+  print "Die Temperature:    %.2f C / %.2f F" % (dietemp, C_to_F(dietemp))
+  print "Object Temperature: %.2f C / %.2f F" % (objtemp, C_to_F(objtemp))
 
