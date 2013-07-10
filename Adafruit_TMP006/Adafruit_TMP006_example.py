@@ -3,6 +3,9 @@
 from Adafruit_TMP006 import TMP006
 from time import sleep
 
+def C_to_F(C):
+  return C * (180.0 / 100.0) + 32.0
+
 # ===========================================================================
 # Example Code
 # ===========================================================================
@@ -21,6 +24,6 @@ sleep(1.5)
 dietemp = tmp.readDieTempC()
 objtemp = tmp.readObjTempC()
 
-print "Die Temperature:    %.2f C" % dietemp
-print "Object Temperature: %.2f C" % objtemp
+print "Die Temperature:    %.2f C / %.2f F" % (dietemp, C_to_F(dietemp))
+print "Object Temperature: %.2f C / %.2f F" % (objtemp, C_to_F(objtemp))
 
