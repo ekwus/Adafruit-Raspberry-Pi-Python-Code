@@ -114,7 +114,7 @@ class TMP006 :
     tdie_tref = Tdie - self.__TMP006_TREF
     S = 1 + self.__TMP006_A1 * tdie_tref \
         + self.__TMP006_A2 * tdie_tref * tdie_tref
-    S *= TMP006_S0
+    S *= self.__TMP006_S0
     S /= 10000000
     S /= 10000000
    
