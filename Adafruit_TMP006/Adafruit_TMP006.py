@@ -79,7 +79,7 @@ class TMP006 :
 
   def readRawDieTemperature(self):
     "Read the raw die temperature"
-    raw = self.i2c.readU16(self.__TMP006_REG_TAMB)
+    raw = self.i2c.readS16(self.__TMP006_REG_TAMB)
     raw >>= 2
     if self.debug:
       C = raw * 0.03125
@@ -88,7 +88,7 @@ class TMP006 :
 
   def readRawVoltage(self):
     "Read the raw voltage"
-    raw = self.i2c.readU16(self.__TMP006_REG_VOBJ)
+    raw = self.i2c.readS16(self.__TMP006_REG_VOBJ)
     if self.debug:
       v = raw
       v *= 156.25
