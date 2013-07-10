@@ -118,9 +118,9 @@ class Adafruit_I2C :
     "Reads an unsigned 16-bit value from the I2C device"
     try:
       result = self.bus.read_word_data(self.address, reg)
-      #hibyte = self.readU8(reg)
-      #lobyte = self.readU8(reg+1)
-      #result = (hibyte << 8) + lobyte
+      hibyte = 0xff & result
+      lobyte = 0xff & (result >> 8)
+      result = (hibyte << 8) | lobyte
       if (self.debug):
         print "I2C: Device 0x%02X returned 0x%04X from reg 0x%02X" % (self.address, result & 0xFFFF, reg)
       return result
