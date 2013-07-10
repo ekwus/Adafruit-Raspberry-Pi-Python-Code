@@ -15,6 +15,7 @@ tmp = TMP006(0x40)
 tmp.begin()
 
 # Wait a short bit for sample averaging
+print "Pausing 1.5 s..."
 sleep(1.5)
 
 dietemp = tmp.readDieTempC()

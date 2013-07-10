@@ -2,6 +2,7 @@
 
 import time
 from Adafruit_I2C import Adafruit_I2C
+from math import sqrt
 
 # ===========================================================================
 # TMP006 Class
@@ -50,17 +51,22 @@ class TMP006 :
 
     self.address = address
     self.debug = debug
+    self.started = false
 
   # Destructor
-  
+  def __del__(self):
+    if self.started:
+      self.i2c.write16(self.__TMP006_REG_CONFIG, 0);
 
   # Start Sampling
   def begin(self, samplerate=__TMP006_CFG_16SAMPLE):
     self.i2c.write16(self.__TMP006_REG_CONFIG,
                      self.__TMP006_CFG_MODEON | self.__TMP006_CFG_DRDYEN | samplerate);
 
-    mid = self.i2c.readU16(self.__TMP006_REG_MANID)
-    did = self.i2c.readU16(self.__TMP006_REG_DEVID)
+    self.started = true
+
+    mid = self.i2c.readS16(self.__TMP006_REG_MANID)
+    did = self.i2c.readS16(self.__TMP006_REG_DEVID)
 
     if self.debug:
       print "mid = 0x%x" % mid
@@ -69,7 +75,7 @@ class TMP006 :
     if mid != self.__TMP006_MANID:
       print "WARN TMP006: Manufacturer ID Mismatch (%04X)" % mid
     if did != self.__TMP006_DEVID:
-      print "WARN TMP006: Decide ID Mismatch (%04X)" % did
+      print "WARN TMP006: Device ID Mismatch (%04X)" % did
 
   def readRawDieTemperature(self):
     "Read the raw die temperature"
