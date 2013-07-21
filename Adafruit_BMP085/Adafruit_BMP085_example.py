@@ -33,5 +33,5 @@ pressure = bmp.readPressure()
 altitude = bmp.readAltitude()
 
 print "Temperature: %.2f C / %.2f F" % (temp, C_to_F(temp))
-print "Pressure:    %.2f hPa / %.2f inHg" % ((pressure / 100.0), hPa_to_inHg(pressure))
-print "Altitude:    %.2f m / %.1 ft" % (altitude, m_to_ft(altitude))
+print "Pressure:    %.2f hPa / %.2f inHg" % ((pressure / 100.0), hPa_to_inHg(pressure / 100.0))
+print "Altitude:    %.2f m / %.1f ft" % (altitude, m_to_ft(altitude))
