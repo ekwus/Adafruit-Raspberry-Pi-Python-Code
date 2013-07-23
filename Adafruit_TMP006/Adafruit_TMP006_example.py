@@ -12,15 +12,15 @@ def C_to_F(C):
 
 # Initialise the TMP006 and use defaults
 # tmp = TMP006(0x40, debug=True)
-tmp = TMP006(0x40)
+tmp = TMP006(0x41, debug=True)
 
 # Start sampling
 tmp.begin()
 
 # Wait a short bit for sample averaging
 while True:
-  print "Pausing 1.0 s..."
-  sleep(1.0)
+  print "Pausing 2.0 s..."
+  sleep(2.0)
 
   dietemp = tmp.readDieTempC()
   objtemp = tmp.readObjTempC()

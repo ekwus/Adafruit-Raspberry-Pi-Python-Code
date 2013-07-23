@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import smbus
+from ctypes import c_short
 
 # ===========================================================================
 # Adafruit_I2C Class
@@ -130,9 +131,13 @@ class Adafruit_I2C :
   def readS16(self, reg):
     "Reads a signed 16-bit value from the I2C device"
     try:
-      hibyte = self.readS8(reg)
-      lobyte = self.readU8(reg+1)
-      result = (hibyte << 8) + lobyte
+      #hibyte = self.readS8(reg)
+      #lobyte = self.readU8(reg+1)
+      #result = (hibyte << 8) + lobyte
+      result = self.bus.read_word_data(self.address, reg)
+      hibyte = 0xff & result
+      lobyte = 0xff & (result >> 8)
+      result = c_short((hibyte << 8) + lobyte).value
       if (self.debug):
         print "I2C: Device 0x%02X returned 0x%04X from reg 0x%02X" % (self.address, result & 0xFFFF, reg)
       return result
