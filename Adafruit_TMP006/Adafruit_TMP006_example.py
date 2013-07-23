@@ -12,7 +12,7 @@ def C_to_F(C):
 
 # Initialise the TMP006 and use defaults
 # tmp = TMP006(0x40, debug=True)
-tmp = TMP006(0x41, debug=True)
+tmp = TMP006(0x41)
 
 # Start sampling
 tmp.begin()
