@@ -61,11 +61,11 @@ class Adafruit_I2C :
 
   def write16(self, reg, value):
     "Writes a 16-bit value to the specified register/address pair"
+    value = ((val << 8) & 0xff00) | ((val >> 8) & 0xff)
     try:
       self.bus.write_word_data(self.address, reg, value)
       if self.debug:
-        print ("I2C: Wrote 0x%02X to register pair 0x%02X,0x%02X" %
-         (value, reg, reg+1))
+        print ("I2C: Wrote 0x%04X to register 0x%02X" % (value, reg))
     except IOError, err:
       return self.errMsg()
 
