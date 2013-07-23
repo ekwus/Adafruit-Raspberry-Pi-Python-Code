@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+from time import sleep
 from Adafruit_BMP085 import BMP085
 
 def C_to_F(C):
@@ -28,10 +29,12 @@ bmp = BMP085(0x77)
 # bmp = BMP085(0x77, 2)  # HIRES Mode
 # bmp = BMP085(0x77, 3)  # ULTRAHIRES Mode
 
-temp = bmp.readTemperature()
-pressure = bmp.readPressure()
-altitude = bmp.readAltitude()
+while True:
+  temp = bmp.readTemperature()
+  pressure = bmp.readPressure()
+  altitude = bmp.readAltitude()
 
-print "Temperature: %.2f C / %.2f F" % (temp, C_to_F(temp))
-print "Pressure:    %.2f hPa / %.2f inHg" % ((pressure / 100.0), hPa_to_inHg(pressure / 100.0))
-print "Altitude:    %.2f m / %.1f ft" % (altitude, m_to_ft(altitude))
+  print "Temperature: %.2f C / %.2f F" % (temp, C_to_F(temp))
+  print "Pressure:    %.2f hPa / %.2f inHg" % ((pressure / 100.0), hPa_to_inHg(pressure / 100.0))
+  print "Altitude:    %.2f m / %.1f ft" % (altitude, m_to_ft(altitude))
+  sleep(2.0)
